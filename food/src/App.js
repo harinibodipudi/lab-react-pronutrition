@@ -4,15 +4,10 @@ import FoodBox from './components/FoodBox'
 import Search from './components/Search'
 import { render } from 'react-dom';
 
-function App() {
-    render() {
-        const countries = [
-            "Apple","pizza","orange"
-        ];
+function App(){
 
-        return ( <div className = "App" >
-            <Search content={countries} />
-            <FoodBox name = "pizza"
+return ( < div className = "App" >
+<Search/> <FoodBox name = "pizza"
             cal = "400"
             img = "https://i.imgur.com/eTmWoAN.png" / >
             <FoodBox name = "orange"
@@ -21,9 +16,10 @@ function App() {
             <FoodBox name = "Apple"
             cal = "100"
             img = "https://st.depositphotos.com/2046901/4507/v/380/depositphotos_45075345-stock-illustration-red-apple-icon.jpg" / >
-            </div>
-        );
-    }
+            
+    </div>
+);
 }
+
 
 export default App;

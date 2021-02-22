@@ -1,41 +1,42 @@
 import React, { Component } from 'react'
 import FoodBox from './FoodBox'
+import Fuse from "fuse.js";
 export default class Search extends Component {
-    state = {
-        initialItems: [],
-        items: []
-    }
-
-    filterList = (event) => {
-      let items = this.state.initialItems;
-      items = items.filter((item) => {
-        return item.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
-      });
-      this.setState({items: items});
-    }
-
-    componentWillMount = () => {
-      this.setState({
-          initialItems: this.props.content,
-          items: this.props.content
-      })
-    }
+  state={
+    names:[{name :"pizza",
+    cal : "400",
+    img : "https://i.imgur.com/eTmWoAN.png"},
+    {name :"orange",
+    cal : "200",
+    img : "https://img.icons8.com/cotton/2x/orange.png"},
+    {name : "Apple",
+    cal : "100",
+    img : "https://st.depositphotos.com/2046901/4507/v/380/depositphotos_45075345-stock-illustration-red-apple-icon.jpg"}],
+    searchTerm:'',
+    items:[],
+  }
+   editSerachTerm= (e)=>{
+this.setState({searchTerm: e.target.value})
+   }
+   searchfoodItem=()=>{
+      this.state.names.map(fruitname=>{
+       if(fruitname.name==(this.state.searchTerm)){
+       <FoodBox name={fruitname.name} cal={fruitname.cal} img={fruitname.img}/>
+     }
+    });
+   }
 
     render() {
       return (
         <div>
           <form>
-                <input type="text" placeholder="Search" onChange={this.filterList}/>
+                <input type="text" placeholder="Search" onChange={(event)=>this.editSerachTerm(event)} placeholder="type to search"/>
           </form>
-          <div>
-            {
-                this.state.items.map(function(item) {
-                    return <div key={item}>{item}</div>
-                })
-            }
-            </div>
+          
+          {this.searchfoodItem()}
+          
         </div>
       );
     }
-};
 }
+
